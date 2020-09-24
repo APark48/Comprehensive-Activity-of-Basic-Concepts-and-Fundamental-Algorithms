@@ -5,7 +5,7 @@
 - [Valter Alejadro Kuhne Hernández](https://github.com/Asdertuy)
 
 ## About
-Given an .xlsx file with the following data:
+Given an .csv file with the following data:
 - Date
 - Time
 - Source IP
@@ -15,7 +15,7 @@ Given an .xlsx file with the following data:
 - Destination Port
 - Destination Hostname
 
-Using our Data Structures & Algorithms knowledge, we will be solving the following...
+Using our Data Structures & Algorithms knowledge, we will be solving the following the following...
 
 ### Objectives:
 - Create the ADT of the object where each line of the log will be saved.
