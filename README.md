@@ -1,10 +1,8 @@
 # Comprehensive Activity of Basic Concepts and Fundamental Algorithms
 ### Developers
-- Alfredo Jeong Hyun Park
-https://github.com/APark48
+- [Alfredo Jeong Hyun Park](https://github.com/APark48)
 
-- Valter Alejadro Kuhne Hernández
-https://github.com/Asdertuy
+- [Valter Alejadro Kuhne Hernández](https://github.com/Asdertuy)
 
 ## About
 Given an .xlsx file with the following data:
