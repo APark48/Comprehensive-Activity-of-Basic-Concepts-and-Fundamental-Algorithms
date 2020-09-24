@@ -4,9 +4,19 @@
 https://github.com/APark48
 
 - Valter Alejadro Kuhne Hernández
+https://github.com/Asdertuy
 
 ## About
-Using Data Structures & Algorithms knowledge, we will be solving...
+Given an .csv file with the following data:
+- Date
+- Time
+- Source IP
+- Source Port
+- Source Hostname
+- Destination IP
+- Destination Port
+- Destination Hostname
+Using our Data Structures & Algorithms knowledge, we will be solving the following...
 
 ### Objectives:
 - Create the ADT of the object where each line of the log will be saved.
