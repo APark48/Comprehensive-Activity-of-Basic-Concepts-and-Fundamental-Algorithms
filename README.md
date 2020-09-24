@@ -15,7 +15,7 @@ Given an .csv file with the following data:
 - Destination Port
 - Destination Hostname
 
-Using our Data Structures & Algorithms knowledge, we will be solving the following the following...
+Using our Data Structures & Algorithms knowledge, we will be solving the following...
 
 ### Objectives:
 - Create the ADT of the object where each line of the log will be saved.
