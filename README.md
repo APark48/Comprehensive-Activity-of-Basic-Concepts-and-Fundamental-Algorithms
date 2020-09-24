@@ -7,7 +7,7 @@ https://github.com/APark48
 https://github.com/Asdertuy
 
 ## About
-Given an .csv file with the following data:
+Given an .xlsx file with the following data:
 - Date
 - Time
 - Source IP
