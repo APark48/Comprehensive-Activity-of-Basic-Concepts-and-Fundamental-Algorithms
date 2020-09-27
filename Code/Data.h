@@ -2,11 +2,11 @@
 //Developed by Valter Alejandro Kuhne Hernández (A01379392)
 //Copyright © 2020. All rights reserved.
 #pragma once
-#include <string>
 
+template <typename T>
 class Data{
 private:
-    std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
+    T date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
 public:
     //Constructors & Destructor
     //Default constructor in case no arguments are provided
@@ -21,7 +21,7 @@ public:
         destinationHostname="None";
     }
     //Constructor if arguments are provided
-    Data(std::string date, std::string time, std::string sourceIp, std::string sourcePort, std::string sourceHostname, std::string destinationIp, std::string destinationPort, std::string destinationHostname){
+    Data(T date, T time, T sourceIp, T sourcePort, T sourceHostname, T destinationIp, T destinationPort, T destinationHostname){
         this->date=date;
         this->time=time;
         this->sourceIp=sourceIp;
