@@ -5,7 +5,7 @@
 - [Valter Alejadro Kuhne Hernández](https://github.com/Asdertuy)
 
 ## About
-Given an .xlsx file with the following data:
+Given an .csv file with the following data:
 - Date
 - Time
 - Source IP
