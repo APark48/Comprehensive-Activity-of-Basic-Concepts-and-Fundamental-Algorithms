@@ -2,7 +2,6 @@
 //Developed by Valter Alejandro Kuhne Hernández (A01379392)
 //Copyright © 2020. All rights reserved.
 #pragma once
-#include <iostream>
 #include <string>
 
 class Data{

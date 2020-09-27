@@ -6,10 +6,11 @@
 #include <fstream>
 #include <vector>
 
-std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
 std::vector <class Data> read(){
+    std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
     std::ifstream data("equipo11.csv");
     while(data.peek()!=EOF){
-        
+        std::getline(data, date, ',');
+        std::getline(data, time, ',');
     }
 }
