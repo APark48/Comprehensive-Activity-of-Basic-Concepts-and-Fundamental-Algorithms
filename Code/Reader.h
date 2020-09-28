@@ -85,44 +85,44 @@ void direccionIP(std::vector<class Data<std::string>>&read){
     std::cout << "La direccion IP de la compania es " << ipCompania << std::endl;
 }
 
-void mails(std::vector<class Data<std::string>> &read){
-    int mailCount;
-    std::cout<< "Cuantos correos quieres buscar?" << std::endl;
-    std::cin >> mailCount;
-    std::string mails[mailCount];
-    for(int i=0; i<mailCount; i++){
-        std::cout << "Escribe el nombre en minusculas" << std::endl;
-        std::cin >> mails.at(i);
-        mails.at(i).append(".com");
-    };
+// void mails(std::vector<class Data<std::string>> &read){
+//     int mailCount;
+//     std::cout<< "Cuantos correos quieres buscar?" << std::endl;
+//     std::cin >> mailCount;
+//     std::string mails[mailCount];
+//     for(int i=0; i<mailCount; i++){
+//         std::cout << "Escribe el nombre en minusculas" << std::endl;
+//         std::cin >> mails.at(i);
+//         mails.at(i).append(".com");
+//     };
 
-    std::vector<std::string> hostNames;
-    for(int i=0; i<read.size(); i++){
-        std::string destinationHost = read.at(i).getDestinationHostname();
-        hostNames.push_back(destinationHost);
-    }
+//     std::vector<std::string> hostNames;
+//     for(int i=0; i<read.size(); i++){
+//         std::string destinationHost = read.at(i).getDestinationHostname();
+//         hostNames.push_back(destinationHost);
+//     }
 
-    int posiciones[mailCount];
-    for(int j=0; j<mailCount; j++){
-        posiciones.at(j)=binarySearch<std::string>(0, hostNames.size()-1, mails.at(j), hostNames);
-        if(posiciones[j]==-1){
-            std::cout << mails.at(j) << " no es un correo que se usa en la empresa." << std::endl;
-        } else {
-            std::cout << mails.at(j) << " si es un correo que se usa en la empresa." << std::endl;
-        }
-    };
-}
+//     int posiciones[mailCount];
+//     for(int j=0; j<mailCount; j++){
+//         posiciones.at(j)=binarySearch<std::string>(0, hostNames.size()-1, mails.at(j), hostNames);
+//         if(posiciones[j]==-1){
+//             std::cout << mails.at(j) << " no es un correo que se usa en la empresa." << std::endl;
+//         } else {
+//             std::cout << mails.at(j) << " si es un correo que se usa en la empresa." << std::endl;
+//         }
+//     };
+// }
 
-void portCount(std::vector<class Data<std::string>> &read){
-    std::vector<std::string> ports;
-    int check;
-    for(int i=0; i<read.size(); i++){
-        check=binarySearch(0, ports.size()-1, read.at(i).getDestinationPort(), ports);
-        if(check==-1){
-            ports.push_back(read.at(i).getDestinationPort());
-        }
-    }
-    for(int j=0; j<ports.size(); j++){
-        std::cout << ports.at(j) << std::endl;
-    }
-}
+// void portCount(std::vector<class Data<std::string>> &read){
+//     std::vector<std::string> ports;
+//     int check;
+//     for(int i=0; i<read.size(); i++){
+//         check=binarySearch(0, ports.size()-1, read.at(i).getDestinationPort(), ports);
+//         if(check==-1){
+//             ports.push_back(read.at(i).getDestinationPort());
+//         }
+//     }
+//     for(int j=0; j<ports.size(); j++){
+//         std::cout << ports.at(j) << std::endl;
+//     }
+// }
