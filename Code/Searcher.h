@@ -6,16 +6,16 @@
 #include <vector>
 
 template <typename T>
-int binarySearch(int inicio, int final, T valor, std::vector<class Data<T>> &valores){
-    if(final>=inicio){
-        int i=inicio + (final-inicio)/2;
-        if(valores.at(i).getSourceHostname()==valor){
+int binarySearch(int start, int end, T value, std::vector<class Data<T>> &elements){
+    if(end>=start){
+        int i=start + (start-end)/2;
+        if(valores.at(i).getSourceHostname()==value){
             return i;
         } 
-        if (valores.at(i).getSourceHostname()>valor){
-            return binarySearch(inicio, i-1, valor, valores);
+        if (valores.at(i).getSourceHostname()>value){
+            return binarySearch(start, i-1, value, elements);
         }
-        return binarySearch(i+1, final, valor, valores);
+        return binarySearch(i+1, end, value, elements);
     }
     return -1;
 }
