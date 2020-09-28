@@ -1,5 +1,4 @@
-//Developed by Alfredo Jeong Hyun Park (A01658259)
-//Copyright © 2020. All rights reserved.
+//USING Sorther.h provided in TC1031.
 #pragma once
 #include <iostream>
 #include <vector>

@@ -24,20 +24,20 @@ bool compareDestinationPort(Data<std::string> &a, Data<std::string> &b){
 };
 
 int main(){
-    std::vector<class Data<std::string>> datos;
-    datos=reader();
-    int dia2;
-    dia2=segundoDia(datos);
-    std::cout << dia2 << std::endl;
-    Quicksort<Data<std::string>> organizar;
-    organizar.sort(datos, &compareSourceHostname);
-    countNames(datos);
-    organizar.sort(datos, &compareSourceIP);
-    direccionIP(datos);
-    organizar.sort(datos, &compareDestinationHostname);
-    direccionIP(datos);
-    organizar.sort(datos, &compareDestinationPort);
-    portCount(datos);
+    std::vector<class Data<std::string>> data;
+    data=reader();
+    int secondDay;
+    secondDay=day2(data);
+    std::cout << secondDay << std::endl;
+    Quicksort<Data<std::string>> organize;
+    organize.sort(data, &compareSourceHostname);
+    countNames(data);
+    organize.sort(data, &compareSourceIP);
+    direccionIP(data);
+    organize.sort(data, &compareDestinationHostname);
+    direccionIP(data);
+    organize.sort(data, &compareDestinationPort);
+    portCount(data);
     
     return 0;
 }
