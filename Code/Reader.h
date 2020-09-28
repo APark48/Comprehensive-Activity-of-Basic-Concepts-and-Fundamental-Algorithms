@@ -53,21 +53,20 @@ int segundoDia(std::vector<class Data<std::string>>&read){
         contador_iterativo++;
     }
     std::cout<<"El segundo dia es " << dia2 << std::endl;
+    std::cout<<"cantidad de veces que se visualiza ";
     return contar_dia_2;
 }
 
 void countNames(std::vector<class Data<std::string>> &read){
-    std::cout<<"Cuantos nombres quieres buscar?" << std::endl;
-    int nameCount;
-    std::cin >> nameCount;
-    std::vector<std::string> names;
+    int count = 7;
     std::string name;
-    std::vector<int> posiciones;
-    for(int i=0; i<nameCount; i++){
-        std::cout << "Escribe el nombre en minusculas" << std::endl;
+    std::vector<std::string> names(read.size());
+    std::vector<int> posiciones(count);
+    for(int i=0; i<count; i++){
+        std::cout << "Nombre a buscar" << std::endl;
         std::cin >> name;
         names.push_back(name);
-        names[i].append(".reto.com");
+        names[i].append("reto.com");
         posiciones.at(i) = binarySearch<std::string>(0, read.size()-1, names.at(i), names);
         if(posiciones.at(i)==-1){
             std::cout << name << " no es un empleado de la empresa." << std::endl;
@@ -75,22 +74,21 @@ void countNames(std::vector<class Data<std::string>> &read){
             std::cout << name << " si trabaja en la empresa." << std::endl;
         }
     };
-
 }
 
 void direccionIP(std::vector<class Data<std::string>>&read){
     std::string ipCompania = read.at(read.size()-1).getSourceIp();
     ipCompania.erase(10,ipCompania.length()-10);
-    ipCompania.append(".0");
+    ipCompania.append("0");
     std::cout << "La direccion IP de la compania es " << ipCompania << std::endl;
 }
 
 void mails(std::vector<class Data<std::string>> &read){
-    int mailCount;
+    int count;
     std::cout<< "Cuantos correos quieres buscar?" << std::endl;
-    std::cin >> mailCount;
-    std::vector<std::string> mails(mailCount);
-    for(int i=0; i<mailCount; i++){
+    std::cin >> count;
+    std::vector<std::string> mails(count);
+    for(int i=0; i<count; i++){
         std::cout << "Escribe el nombre en minusculas" << std::endl;
         std::cin >> mails.at(i);
         mails.at(i).append(".com");
@@ -102,8 +100,8 @@ void mails(std::vector<class Data<std::string>> &read){
         hostNames.push_back(destinationHost);
     }
 
-    std::vector<int> posiciones(mailCount);
-    for(int j=0; j<mailCount; j++){
+    std::vector<int> posiciones(count);
+    for(int j=0; j<count; j++){
         posiciones.at(j)=binarySearch<std::string>(0, hostNames.size()-1, mails.at(j), hostNames);
         if(posiciones[j]==-1){
             std::cout << mails.at(j) << " no es un correo que se usa en la empresa." << std::endl;

@@ -15,6 +15,13 @@ bool compareSourceIP(Data<std::string> &a, Data<std::string> &b){
     return a.getSourceIp()<b.getSourceIp();
 };
 
+bool compareDestinationHostname (Data<std::string> &a, Data<std::string> &b){
+     return a.getDestinationHostname()<b.getDestinationHostname();
+}
+
+bool compareDestinationPort(Data<std::string> &a, Data<std::string> &b){
+    return a.getDestinationPort()<b.getDestinationPort();
+};
 
 int main(){
     std::vector<class Data<std::string>> datos;
@@ -27,6 +34,10 @@ int main(){
     countNames(datos);
     organizar.sort(datos, &compareSourceIP);
     direccionIP(datos);
+    organizar.sort(datos, &compareDestinationHostname);
+    direccionIP(datos);
+    organizar.sort(datos, &compareDestinationPort);
+    portCount(datos);
     
     return 0;
 }
