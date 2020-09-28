@@ -8,7 +8,6 @@
 #include <string>
 
 using std::getline;
-// help
 
 std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
 std::vector <class Data<std::string>> reader(){
