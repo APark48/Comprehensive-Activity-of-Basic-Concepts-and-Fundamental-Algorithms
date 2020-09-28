@@ -56,8 +56,8 @@ int segundoDia(std::vector<class Data<std::string>> &read){
 }
 
 void countNames(std::vector<class Data<std::string>> &read){
-    int nameCount;
     std::cout<<"Cuantos nombres quieres buscar?" << std::endl;
+    int nameCount;
     std::cin >> nameCount;
     std::string names[nameCount], name[nameCount];
     for(int i=0; i<nameCount; i++){
@@ -79,7 +79,7 @@ void countNames(std::vector<class Data<std::string>> &read){
 }
 
 void direccionIP(std::vector<class Data<std::string>> &read){
-    std::string ipCompania = read.at(read.size()-1).getSourceip();
+    std::string ipCompania = read.at(read.size()-1).getSourceIp();
     ipCompania.erase(10,ipCompania.length()-10);
     ipCompania.append(".0");
     std::cout << "La direccion IP de la compania es " << ipCompania << std::endl;
