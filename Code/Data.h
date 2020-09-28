@@ -33,11 +33,29 @@ public:
     }
     ~Data(){};
 
-    //Functions to get date and source IP
+    //Functions to get data
     T getDate(){
         return date;
     }
-    T getSourceip(){
+    T getTime(){
+        return time;
+    }
+    T getSourceIp(){
         return sourceIp;
+    }
+    T getSourcePort(){
+        return sourcePort;
+    }
+    T getSourceHostname(){
+        return sourceHostname;
+    }
+    T getDestinationIp(){
+        return destinationIp;
+    } 
+    T getDestinationPort(){
+        return destinationPort;
+    } 
+    T getDestinationHostname(){
+        return destinationHostname;
     }
 };
