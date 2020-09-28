@@ -32,4 +32,12 @@ public:
         this->destinationHostname=destinationHostname;
     }
     ~Data(){};
+
+    //Functions to get date and source IP
+    T getDate(){
+        return date;
+    }
+    T getSourceip(){
+        return sourceIp;
+    }
 };
