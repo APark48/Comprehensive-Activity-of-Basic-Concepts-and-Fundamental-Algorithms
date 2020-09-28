@@ -7,25 +7,25 @@
 #include "Data.h"
 #include <iostream>
 
-bool compareHostnameF (Data<std::string> &a, Data<std::string> &b){
-     return 0;
+bool compareSourceHostname (Data<std::string> &a, Data<std::string> &b){
+     return a.getSourceHostname()<b.getSourceHostname();
 }
 
-bool compareIPFuente(Data<std::string> &a, Data<std::string> &b){
-    return 0;
+bool compareSourceIP(Data<std::string> &a, Data<std::string> &b){
+    return a.getSourceIp()<b.getSourceIp();
 };
 
 
 int main(){
     std::vector<class Data<std::string>> datos;
-    datos=readRecords();
+    datos=reader();
     int dia2;
     dia2=segundoDia(datos);
     std::cout << dia2 << std::endl;
-    Sorter<Data<std::string>> organizar;
-    organizar.ordenaQuick(datos, &compareHostNameFuente);
+    Quicksort<Data<std::string>> organizar;
+    organizar.sort(datos, &compareSourceHostname);
     countNames(datos);
-    organizar.ordenaQuick(datos, &compareIPFuente);
+    organizar.sort(datos, &compareSourceIP);
     direccionIP(datos);
     
 
