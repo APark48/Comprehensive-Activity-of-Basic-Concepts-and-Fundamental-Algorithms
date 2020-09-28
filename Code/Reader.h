@@ -60,22 +60,19 @@ void countNames(std::vector<class Data<std::string>> &read){
     std::cout<<"Cuantos nombres quieres buscar?" << std::endl;
     int nameCount;
     std::cin >> nameCount;
-    std::string names, name;
-    names = names.at(nameCount), name = name.at(nameCount);
+    std::vector<std::string> names;
+    std::string name;
+    std::vector<int> posiciones;
     for(int i=0; i<nameCount; i++){
         std::cout << "Escribe el nombre en minusculas" << std::endl;
-        std::cin >> name.at(i);
-        names.at(i)=name.at(i);
-        names.append(".reto.com");
-    };
-
-    std::vector<int> posiciones;
-    for(int j=0; j<nameCount; j++){
-        posiciones.at(j) = binarySearch<std::string>(0, read.size()-1, names.at(j), read);
-        if(posiciones[j]==-1){
-            std::cout << name[j] << " no es un empleado de la empresa." << std::endl;
+        std::cin >> name;
+        names.push_back(name);
+        names[i].append(".reto.com");
+        posiciones.at(i) = binarySearch<std::string>(0, read.size()-1, names.at(i), read);
+        if(posiciones.at(i)==-1){
+            std::cout << name << " no es un empleado de la empresa." << std::endl;
         } else {
-            std::cout << name[j] << " si trabaja en la empresa." << std::endl;
+            std::cout << name << " si trabaja en la empresa." << std::endl;
         }
     };
 
