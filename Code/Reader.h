@@ -3,6 +3,7 @@
 //Copyright © 2020. All rights reserved.
 #pragma once
 #include "Data.h"
+#include "Searcher.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -68,7 +69,7 @@ void countNames(std::vector<class Data<std::string>> &read){
     };
     int posiciones[nameCount];
     for(int j=0; j<nameCount; j++){
-        posiciones[j]=busquedaBinariasourceHostname<std::string>(0, read.size()-1, names[j], read);
+        posiciones[j]=binarySearch<std::string>(0, read.size()-1, names[j], read);
         if(posiciones[j]==-1){
             std::cout << name[j] << " no es un empleado de la empresa." << std::endl;
         } else {
