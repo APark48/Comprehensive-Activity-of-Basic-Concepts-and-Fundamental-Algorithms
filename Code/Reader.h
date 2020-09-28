@@ -12,7 +12,7 @@
 using std::getline;
 
 std::vector<class Data<std::string>> reader(){
-    std::ifstream data("equipo10.csv");
+    std::ifstream data("equipo11.csv");
     std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
     std::vector<class Data<std::string>> read;
     while (data.peek()!=EOF){
@@ -84,3 +84,4 @@ void direccionIP(std::vector<class Data<std::string>> &read){
     ipCompania.append(".0");
     std::cout << "La direccion IP de la compania es " << ipCompania << std::endl;
 }
+
