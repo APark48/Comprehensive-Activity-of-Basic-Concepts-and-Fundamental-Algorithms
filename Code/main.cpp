@@ -5,6 +5,7 @@
 #include "Sorter.h"
 #include "Searcher.h"
 #include "Data.h"
+#include "ComputerConnetions.h"
 #include <iostream>
 
 bool compareSourceHostname (Data<std::string> &a, Data<std::string> &b){
@@ -39,5 +40,6 @@ int main(){
     organize.sort(data, &compareDestinationPort);
     portCount(data);
     
+
     return 0;
 }

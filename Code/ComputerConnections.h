@@ -2,6 +2,7 @@
 //Developed by Valter Alejandro Kuhne Hernández (A01379392)
 //Copyright © 2020. All rights reserved.
 #pragma once
+#include <vector>
 #include <stdlib.h>
 #include <iostream>
 #include "Data.h"
@@ -20,8 +21,13 @@ class ComputerConnections {
     }
     ~ComputerConnections(){}
     
-    T sourceConnections(int destinationIP){
-        
+    T sourceConnections(std::vector<T> elements){
+        std::vector<T> reversedElements;
+        while (elements.size() != 0){
+            reversedElements.push_back(elements.back());
+            elements.pop_back();
+        }
+        return reversedElements;
     }
 
     T destinationConnections(int sourceIP){
