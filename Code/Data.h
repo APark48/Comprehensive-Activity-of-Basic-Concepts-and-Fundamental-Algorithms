@@ -22,14 +22,6 @@ public:
     }
     //Constructor if arguments are provided
     Data(T date, T time, T sourceIp, T sourcePort, T sourceHostname, T destinationIp, T destinationPort, T destinationHostname){
-        this->date=date;
-        this->time=time;
-        this->sourceIp=sourceIp;
-        this->sourcePort=sourcePort;
-        this->sourceHostname=sourceHostname;
-        this->destinationIp=destinationIp;
-        this->destinationPort=destinationPort;
-        this->destinationHostname=destinationHostname;
     }
     ~Data(){};
 
@@ -58,4 +50,26 @@ public:
     T getDestinationHostname(){
         return destinationHostname;
     }
+
+    void setDate (std::string val) {
+        date = val;};     
+    void setTime (std::string val) {
+        time = val;};     
+    void setSourceIP (std::string val) {
+        sourceIp = val;};     
+    void setSourcePort (std::string val) {
+        sourcePort = val;};     
+    void setSourceHostname (std::string val) {
+        sourceHostname = val;};     
+    void setDestinationIP (std::string val) {
+        destinationIp = val;};     
+    void setDestinationPort (std::string val) {
+        destinationPort = val;};     
+    void setDestinationHostname (std::string val) {
+        destinationHostname = val;};
+
+    static bool compareSourceHostname(Data &a, Data &b);
+
+    static bool compareEqual(int &a, int &b);
+
 };
