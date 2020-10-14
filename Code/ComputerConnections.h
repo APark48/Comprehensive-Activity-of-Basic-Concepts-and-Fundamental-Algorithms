@@ -9,13 +9,12 @@
 
 template <typename T>
 class ComputerConnections {
-    private:
+private:
     T IP;
     T name;
     T sourceConnections;
-    T destinationConnections;
-    
-    public:
+    T destinationConnections;    
+public:
     ComputerConnections(std::string sourceHostname){
 
     }

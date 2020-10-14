@@ -5,7 +5,7 @@
 #include "Sorter.h"
 #include "Searcher.h"
 #include "Data.h"
-#include "ComputerConnetions.h"
+#include "ComputerConnections.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
