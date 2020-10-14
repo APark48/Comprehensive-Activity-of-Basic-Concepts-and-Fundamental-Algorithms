@@ -7,25 +7,27 @@
 #include "Data.h"
 #include "ComputerConnetions.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
-bool compareSourceHostname (Data<std::string> &a, Data<std::string> &b){
-     return a.getSourceHostname()<b.getSourceHostname();
+using namespace std;
+
+bool Data::compareSourceHostname(Data &a, Data &b){
+    stringstream ssa(a.getSourceHostname());
+    string h1, h2;
+    getline(ssa, h1, '.');
+    stringstream ssb(b.getSourceHostname());
+    getline(ssb, h2, '.');
+    
+    return h1 == h2;
 }
 
-bool compareSourceIP(Data<std::string> &a, Data<std::string> &b){
-    return a.getSourceIp()<b.getSourceIp();
-};
-
-bool compareDestinationHostname (Data<std::string> &a, Data<std::string> &b){
-     return a.getDestinationHostname()<b.getDestinationHostname();
+bool Data::compareEqual(int &a, int &b){
+    return a == b;
 }
-
-bool compareDestinationPort(Data<std::string> &a, Data<std::string> &b){
-    return a.getDestinationPort()<b.getDestinationPort();
-};
-
+/*
 int main(){
-    std::vector<class Data<std::string>> data;
+    Data data;
     data=reader();
     int secondDay;
     secondDay=day2(data);
@@ -39,7 +41,7 @@ int main(){
     direccionIP(data);
     organize.sort(data, &compareDestinationPort);
     portCount(data);
-    
 
     return 0;
 }
+*/

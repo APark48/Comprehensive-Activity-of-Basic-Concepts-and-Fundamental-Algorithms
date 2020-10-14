@@ -3,10 +3,10 @@
 //Copyright © 2020. All rights reserved.
 #pragma once
 
-template <typename T>
+
 class Data{
 private:
-    T date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
+    std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
 public:
     //Constructors & Destructor
     //Default constructor in case no arguments are provided
@@ -21,33 +21,33 @@ public:
         destinationHostname="None";
     }
     //Constructor if arguments are provided
-    Data(T date, T time, T sourceIp, T sourcePort, T sourceHostname, T destinationIp, T destinationPort, T destinationHostname){
+    Data(std::string date, std::string time, std::string sourceIp, std::string sourcePort, std::string sourceHostname, std::string destinationIp, std::string destinationPort, std::string destinationHostname){
     }
     ~Data(){};
 
     //Functions to get data
-    T getDate(){
+    std::string getDate(){
         return date;
     }
-    T getTime(){
+    std::string getTime(){
         return time;
     }
-    T getSourceIp(){
+    std::string getSourceIp(){
         return sourceIp;
     }
-    T getSourcePort(){
+    std::string getSourcePort(){
         return sourcePort;
     }
-    T getSourceHostname(){
+    std::string getSourceHostname(){
         return sourceHostname;
     }
-    T getDestinationIp(){
+    std::string getDestinationIp(){
         return destinationIp;
     } 
-    T getDestinationPort(){
+    std::string getDestinationPort(){
         return destinationPort;
     } 
-    T getDestinationHostname(){
+    std::string getDestinationHostname(){
         return destinationHostname;
     }
 
@@ -55,13 +55,13 @@ public:
         date = val;};     
     void setTime (std::string val) {
         time = val;};     
-    void setSourceIP (std::string val) {
+    void setSourceIp (std::string val) {
         sourceIp = val;};     
     void setSourcePort (std::string val) {
         sourcePort = val;};     
     void setSourceHostname (std::string val) {
         sourceHostname = val;};     
-    void setDestinationIP (std::string val) {
+    void setDestinationIp (std::string val) {
         destinationIp = val;};     
     void setDestinationPort (std::string val) {
         destinationPort = val;};     
@@ -71,5 +71,16 @@ public:
     static bool compareSourceHostname(Data &a, Data &b);
 
     static bool compareEqual(int &a, int &b);
+
+    void print(){
+    cout << date << ", ";
+    cout << time << ", ";
+    cout << sourceIp << ", ";
+    cout << sourcePort << ", ";
+    cout << sourceHostname << ", ";
+    cout << destinationIp << ", ";
+    cout << destinationPort << ", ";
+    cout << destinationHostname << endl;
+    }
 
 };

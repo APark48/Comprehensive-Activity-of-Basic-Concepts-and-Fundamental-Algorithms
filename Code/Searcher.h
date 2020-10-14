@@ -2,19 +2,26 @@
 //Developed by Valter Alejandro Kuhne Hernández (A01379392)
 //Copyright © 2020. All rights reserved.
 #pragma once
+#include <stdlib.h>
+#include <iostream>
 #include <vector>
-#include "Data.h"
+
 template <typename T>
-int binarySearch(int inicio, int final, T valor, std::vector<T> &valores){
-    if(final>=inicio){
-        int i=inicio + (final-inicio)/2;
-        if(valores.at(i)==valor){
-            return i;
-        } 
-        if (valores.at(i)>valor){
-            return binarySearch(inicio, i-1, valor, valores);
+class Search 
+{
+private:    
+
+public:
+    Search() {};
+    ~Search() {};
+
+    int search_sequential(std::vector<T> arr, T val, bool (*compare)(T &a, T &b))
+    {
+        for (size_t i = 0; i < arr.size(); i++)
+        {
+            if ((*compare)(val, arr[i]))
+                return i;
         }
-        return binarySearch(i+1, final, valor, valores);
-    }
-    return -1;
-}
+        return -1;        
+    };
+};

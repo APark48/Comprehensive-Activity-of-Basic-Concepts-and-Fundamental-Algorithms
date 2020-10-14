@@ -11,116 +11,89 @@
 
 using std::getline;
 
-std::vector<class Data<std::string>> reader(){
-    std::ifstream data("equipo11.csv");
-    std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
-    std::vector<class Data<std::string>> read;
-    while (data.peek()!=EOF){
-        std::getline(data, date, ',');
-        std::getline(data, time, ',');
-        std::getline(data, sourceIp, ',');
-        std::getline(data, sourcePort, ',');
-        std::getline(data, sourceHostname, ',');
-        std::getline(data, destinationIp, ',');
-        std::getline(data, destinationPort, ',');
-        std::getline(data, destinationHostname, '\n');
-        Data<std::string> r(date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname);
-        read.push_back(r);
-    }
-    
-    int count=0;
-    for(int i=0; i<read.size(); i++){
-        count+=1;
-    }
+class Reader{
+private:
+    std::vector<Data> data;
 
-    std::cout << "The .csv file has " << count << " registers." << std::endl;
-    data.close();
-    return read;
-}
+public:
+    ~Reader();
+    Reader();
 
-int day2(std::vector<class Data<std::string>>&read){
-    std::string dayOne, dayTwo = "";
-    int count = 0;
-    int countTwo = 0;
-    dayOne=read.at(count).getDate();
-    while (read.at(count).getDate()==dayOne){
-        count++;
-    }
-
-    dayTwo=read.at(count).getDate();
-    while(read.at(count).getDate()==dayTwo){
-        countTwo++;
-        count++;
-    }
-    std::cout<<"Second day is " << dayTwo << std::endl;
-    std::cout<<"Number of times visualized ";
-    return countTwo;
-}
-
-void countNames(std::vector<class Data<std::string>> &read){
-    int count = 7;
-    std::string name;
-    std::vector<std::string> names(read.size());
-    std::vector<int> positions(count);
-    for(int i=0; i<count; i++){
-        std::cout << "Name to find: ";
-        std::cin >> name;
-        names.push_back(name);
-        names[i].append("reto.com");
-        positions.at(i) = binarySearch<std::string>(0, read.size()-1, names.at(i), names);
-        if(positions.at(i)==-1){
-            std::cout << name << " is not an employee." << std::endl;
-        } else {
-            std::cout << name << " is an employee." << std::endl;
+    int loadDataFromcsv(std::string path){
+        std::ifstream file(path);
+        if (!file.is_open())
+            return -1;
+        std::string line, date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
+        while (getline(file, line)){
+            std::stringstream ss(line);
+            getline(ss, date, ',');
+            getline(ss, time, ',');
+            getline(ss, sourceIp, ',');
+            getline(ss, sourcePort, ',');
+            getline(ss, sourceHostname, ',');
+            getline(ss, destinationIp, ',');
+            getline(ss, destinationPort, ',');
+            getline(ss, destinationHostname, '\n');
+            Data alog(date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname);
+            data.push_back(alog);
         }
-    };
-}
-
-void direccionIP(std::vector<class Data<std::string>>&read){
-    std::string ipCompania = read.at(read.size()-1).getSourceIp();
-    ipCompania.erase(10,ipCompania.length()-10);
-    ipCompania.append("0");
-    std::cout << "Company IP address is:  " << ipCompania << std::endl;
-}
-
-void mails(std::vector<class Data<std::string>> &read){
-    int count;
-    std::cout<< "How many mails do you want to search?: ";
-    std::cin >> count;
-    std::vector<std::string> mails(count);
-    for(int i=0; i<count; i++){
-        std::cout << "Write name in lowercase: ";
-        std::cin >> mails.at(i);
-        mails.at(i).append(".com");
-    };
-
-    std::vector<std::string> hostNames;
-    for(int i=0; i<read.size(); i++){
-        std::string destinationHost = read.at(i).getDestinationHostname();
-        hostNames.push_back(destinationHost);
+        return 1;
     }
-
-    std::vector<int> positions(count);
-    for(int j=0; j<count; j++){
-        positions.at(j)=binarySearch<std::string>(0, hostNames.size()-1, mails.at(j), hostNames);
-        if(positions[j]==-1){
-            std::cout << mails.at(j) << " is not an email used in the company." << std::endl;
-        } else {
-            std::cout << mails.at(j) << " is a mail used in the company." << std::endl;
+    void print_data(){
+        for (size_t i = 0; i < data.size(); i++){
+            data[i].print();
+        }    
+    }
+    int lenght(){
+        return data.size();
+    }
+    int day2(std::string &date){
+        std::string dayOne, dayTwo = "";
+        int count = 0;
+        int countTwo = 0;
+        dayOne=data.at(count).getDate();
+        while (data.at(count).getDate()==dayOne){
+            count++;
         }
-    };
-}
-
-void portCount(std::vector<class Data<std::string>> &read){
-    std::vector<std::string> ports;
-    int check;
-    for(int i=0; i<read.size(); i++){
-        check=binarySearch(0, ports.size()-1, read.at(i).getDestinationPort(), ports);
-        if(check==-1){
-            ports.push_back(read.at(i).getDestinationPort());
+        dayTwo=data.at(count).getDate();
+        while(data.at(count).getDate()==dayTwo){
+            countTwo++;
+            count++;
         }
+        std::cout<<"Second day is " << dayTwo << std::endl;
+        std::cout<<"Number of times visualized ";
+        return countTwo;
     }
-    for(int j=0; j<ports.size(); j++){
-        std::cout << ports.at(j) << std::endl;
+    int find_computer_owner(std::vector<std::string> names){
+        Search<Data> my_search;
+        for (size_t i = 0; i < names.size(); i++){
+            Data dummy_log;
+            dummy_log.setSourceHostname(names[i]);
+            int search_res = my_search.search_sequential(data, dummy_log, &Data::compareSourceHostname);
+            if (search_res >= 0){
+                return search_res;
+            }  
+        }
+        return -1;
     }
-}
+    std::vector<int> direccionIP (){
+        std::string ipCompania = data.at(data.size()-1).getSourceIp();
+        ipCompania.erase(10,ipCompania.length()-10);
+        ipCompania.append("0");
+        std::cout << "Company IP address is:  " << ipCompania << std::endl;
+    }
+    std::vector<int> portCount(int threshold){
+        vector<int> ports;
+        Search<int> searcher;
+        for (size_t i = 0; i < data.size(); i++)    
+        {
+            int dst_port = atoi(data[i].getDestinationPort().c_str());
+            if (dst_port < threshold)
+            {
+                if (searcher.search_sequential(ports, dst_port, &Data::compareEqual) < 0)
+                    ports.push_back(dst_port);
+            }
+        }
+        return ports;  
+    }
+};
