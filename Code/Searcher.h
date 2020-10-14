@@ -15,7 +15,7 @@ public:
     Search() {};
     ~Search() {};
 
-    int search_sequential(std::vector<T> arr, T val, bool (*compare)(T &a, T &b))
+    int sequentialSearch(std::vector<T> arr, T val, bool (*compare)(T &a, T &b))
     {
         for (size_t i = 0; i < arr.size(); i++)
         {

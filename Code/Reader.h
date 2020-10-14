@@ -44,39 +44,42 @@ public:
             data[i].print();
         }    
     }
-    int lenght(){
+    int length(){
         return data.size();
     }
-    int day2(std::string &date){
-        std::string dayOne, dayTwo = "";
-        int count = 0;
-        int countTwo = 0;
-        dayOne=data.at(count).getDate();
-        while (data.at(count).getDate()==dayOne){
-            count++;
+    void day2(int day, std::string &date, int &count){
+    date = "";
+    count = 0;
+
+    int curr = -1;
+    for (size_t i = 0; i < data.size(); i++)
+    {
+        if (data[i].getDate() != date)
+        {
+            curr++;
+            if (day >= curr)
+                date = data[i].getDate();
+            else
+                break;                
         }
-        dayTwo=data.at(count).getDate();
-        while(data.at(count).getDate()==dayTwo){
-            countTwo++;
+        if (day == curr)
             count++;
-        }
-        std::cout<<"Second day is " << dayTwo << std::endl;
-        std::cout<<"Number of times visualized ";
-        return countTwo;
-    }
-    int find_computer_owner(std::vector<std::string> names){
-        Search<Data> my_search;
+    }    
+}
+    int findHostname(std::vector<std::string> names){
+        Search<Data> mySearch;
         for (size_t i = 0; i < names.size(); i++){
-            Data dummy_log;
-            dummy_log.setSourceHostname(names[i]);
-            int search_res = my_search.search_sequential(data, dummy_log, &Data::compareSourceHostname);
-            if (search_res >= 0){
-                return search_res;
+            Data dummyData;
+            dummyData.setSourceHostname(names[i]);
+            int searchRes = mySearch.sequentialSearch(data, dummyData, &Data::compareSourceHostname);
+            if (searchRes >= 0){
+                return searchRes;
             }  
         }
         return -1;
     }
-    std::vector<int> direccionIP (){
+    std::vector<std::string> addressIp (std::string addressIp){
+
         std::string ipCompania = data.at(data.size()-1).getSourceIp();
         ipCompania.erase(10,ipCompania.length()-10);
         ipCompania.append("0");
@@ -85,12 +88,11 @@ public:
     std::vector<int> portCount(int threshold){
         vector<int> ports;
         Search<int> searcher;
-        for (size_t i = 0; i < data.size(); i++)    
-        {
+        for (size_t i = 0; i < data.size(); i++){
             int dst_port = atoi(data[i].getDestinationPort().c_str());
             if (dst_port < threshold)
             {
-                if (searcher.search_sequential(ports, dst_port, &Data::compareEqual) < 0)
+                if (searcher.sequentialSearch(ports, dst_port, &Data::compareEqual) < 0)
                     ports.push_back(dst_port);
             }
         }

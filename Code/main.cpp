@@ -25,23 +25,41 @@ bool Data::compareSourceHostname(Data &a, Data &b){
 bool Data::compareEqual(int &a, int &b){
     return a == b;
 }
-/*
+
 int main(){
-    Data data;
-    data=reader();
-    int secondDay;
-    secondDay=day2(data);
-    std::cout << secondDay << std::endl;
-    Quicksort<Data<std::string>> organize;
-    organize.sort(data, &compareSourceHostname);
-    countNames(data);
-    organize.sort(data, &compareSourceIP);
-    direccionIP(data);
-    organize.sort(data, &compareDestinationHostname);
-    direccionIP(data);
-    organize.sort(data, &compareDestinationPort);
-    portCount(data);
+    Reader data;
+    if (data.loadDataFromcsv("equipo11.csv") > 0)
+        cout << "DONE" << endl;
+    else
+    {
+        cout << "ERROR loading input file... Exiting program...";
+        return 0;
+    }
+
+    cout << "Number of registers: " << data.length() << endl;
+    
+    string date; int count;
+    data.day2(1, date, count);
+    cout << "Date of second day is: " << date << " with " << count << " logs." << endl;
+
+    vector<string> names;
+    names.push_back("jeffrey");
+    names.push_back("scott");
+    names.push_back("katherine");
+    cout << "Found register from ";
+    for (size_t i = 0; i < names.size(); i++){
+        cout << names[i] << ", ";
+    }
+    cout << endl;
+    cout << "\t" << (data.findHostname(names) >= 0 ? "YES" : "NO") << endl;
+    
+    cout << "Destination ports under 1000: \n\t";
+    vector<int> ports = data.portCount(1000);
+    for (size_t i = 0; i < ports.size(); i++){
+        cout << ports[i] << ", ";
+    }
+    cout << endl;
 
     return 0;
 }
-*/
+
