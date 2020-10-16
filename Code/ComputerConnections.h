@@ -10,7 +10,7 @@
 template <typename T>
 class ComputerConnections {
 private:
-    T IP;
+    T ip;
     T name;
     T sourceConnections;
     T destinationConnections;    
@@ -42,7 +42,7 @@ public:
     }
 
 
-    T createNewSourceIP(int n){
+    T createNewIp(int n){
         vector<std::string> addresses;
         std::string address;
         for (size_t i = 0; i < data.size(); i++){
