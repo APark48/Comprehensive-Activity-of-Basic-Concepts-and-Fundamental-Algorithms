@@ -20,7 +20,7 @@ public:
     }
     ~ComputerConnections(){}
     
-    T sourceConnections(std::vector<T> elements){
+    T newSourceConnection(std::vector<T> elements){
         std::vector<T> reversedElements;
         while (elements.size() != 0){
             reversedElements.push_back(elements.back());
@@ -29,7 +29,7 @@ public:
         return reversedElements;
     }
 
-    std::vector<T> destinationConnections(){
+    std::vector<T> newDestinationConnection(){
         vector<std::string> addresses;
         std::string address;
         for (int i = 0; i<Reader::length(); i++){
