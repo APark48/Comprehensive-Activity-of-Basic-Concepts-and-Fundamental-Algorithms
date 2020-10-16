@@ -87,13 +87,14 @@ public:
             address = data[i].getSourceIp();
             address.erase(10,address.length()-10);
             address.append("0");
+            addresses.push_back(address);
         }
         std::cout << "Company IP address is:  " << address << std::endl;
     }
     std::vector<int> portCount(int threshold){
         vector<int> ports;
         Search<int> searcher;
-        for (size_t i = 0; i < data.size(); i++){git 
+        for (size_t i = 0; i < data.size(); i++){ 
             int dst_port = atoi(data[i].getDestinationPort().c_str());
             if (dst_port < threshold){
                 if (searcher.sequentialSearch(ports, dst_port, &Data::compareEqual) < 0)
