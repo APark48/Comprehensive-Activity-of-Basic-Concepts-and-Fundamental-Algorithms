@@ -15,24 +15,29 @@ private:
     T sourceConnections;
     T destinationConnections;    
 public:
-    ComputerConnections();
+    ComputerConnections(std::string sourceHostname){
+
+    }
     ~ComputerConnections(){}
     
-    // Reversing vector by simulating a stack
     T sourceConnections(std::vector<T> elements){
-        // Create empty vector
         std::vector<T> reversedElements;
         while (elements.size() != 0){
-            // Push current vectors' last element to new vector
             reversedElements.push_back(elements.back());
-            // Pop last value of current vector
             elements.pop_back();
         }
         return reversedElements;
     }
 
-    T destinationConnections(int sourceIP){
-
+    std::vector<T> destinationConnections(){
+        vector<std::string> addresses;
+        std::string address;
+        for (int i = 0; i<Reader::length(); i++){
+            address = data[i].getSourceIp();
+            if (address != "-"){
+                addresses.push_back(address);     
+            }
+        }
     }
 
 
