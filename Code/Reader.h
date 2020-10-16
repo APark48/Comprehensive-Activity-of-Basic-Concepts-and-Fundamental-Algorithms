@@ -9,6 +9,7 @@
 #include <vector>
 #include <string>
 
+
 using std::getline;
 
 class Reader{
@@ -48,24 +49,25 @@ public:
         return data.size();
     }
     void day2(int day, std::string &date, int &count){
-    date = "";
-    count = 0;
+        date = "";
+        count = 0;
 
-    int curr = -1;
-    for (size_t i = 0; i < data.size(); i++)
-    {
-        if (data[i].getDate() != date)
-        {
-            curr++;
-            if (day >= curr)
-                date = data[i].getDate();
-            else
-                break;                
+        int curr = -1;
+        for (size_t i = 0; i < data.size(); i++){
+            if (data[i].getDate() != date){
+                curr++;
+                if (day >= curr){
+                    date = data[i].getDate();
+                }
+                else{
+                    break;
+                }                
+            }
+            if (day == curr){
+                count++;
+            }
         }
-        if (day == curr)
-            count++;
     }    
-}
     int findHostname(std::vector<std::string> names){
         Search<Data> mySearch;
         for (size_t i = 0; i < names.size(); i++){
@@ -78,20 +80,22 @@ public:
         }
         return -1;
     }
-    std::vector<std::string> addressIp (std::string addressIp){
-
-        std::string ipCompania = data.at(data.size()-1).getSourceIp();
-        ipCompania.erase(10,ipCompania.length()-10);
-        ipCompania.append("0");
-        std::cout << "Company IP address is:  " << ipCompania << std::endl;
+    std::vector<std::string> addressIp (){
+        vector<std::string> addresses;
+        std::string address;
+        for (size_t i = 0; i < data.size(); i++){
+            address = data[i].getSourceIp();
+            address.erase(10,address.length()-10);
+            address.append("0");
+        }
+        std::cout << "Company IP address is:  " << address << std::endl;
     }
     std::vector<int> portCount(int threshold){
         vector<int> ports;
         Search<int> searcher;
         for (size_t i = 0; i < data.size(); i++){
             int dst_port = atoi(data[i].getDestinationPort().c_str());
-            if (dst_port < threshold)
-            {
+            if (dst_port < threshold){
                 if (searcher.sequentialSearch(ports, dst_port, &Data::compareEqual) < 0)
                     ports.push_back(dst_port);
             }
