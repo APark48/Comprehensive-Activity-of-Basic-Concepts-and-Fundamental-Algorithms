@@ -93,7 +93,7 @@ public:
     std::vector<int> portCount(int threshold){
         vector<int> ports;
         Search<int> searcher;
-        for (size_t i = 0; i < data.size(); i++){
+        for (size_t i = 0; i < data.size(); i++){git 
             int dst_port = atoi(data[i].getDestinationPort().c_str());
             if (dst_port < threshold){
                 if (searcher.sequentialSearch(ports, dst_port, &Data::compareEqual) < 0)
