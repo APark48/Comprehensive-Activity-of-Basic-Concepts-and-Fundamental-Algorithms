@@ -38,10 +38,19 @@ public:
                 addresses.push_back(address);     
             }
         }
+        return addresses;
     }
 
 
     T createNewSourceIP(int n){
-
+        vector<std::string> addresses;
+        std::string address;
+        for (size_t i = 0; i < data.size(); i++){
+            address = data[i].getSourceIp();
+            address.erase(10,address.length()-10);
+            address.append(n);
+            addresses.push_back(address);
+        }
+        return addresses;
     }
 };
