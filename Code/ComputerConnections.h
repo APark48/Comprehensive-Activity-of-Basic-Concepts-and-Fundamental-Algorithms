@@ -56,20 +56,17 @@ public:
     }
 
     // Function to append to the end of our IP address the value we ask the user to input to then create a vector with only this addresses.
-    std::vector<T> createNewIp(int n){
+    std::vector<T> createNewIp(std::string num){
         vector<std::string> addresses;
         std::string address;
         for (size_t i = 0; i < data.size(); i++){
             address = data[i].getSourceIp();
             address.erase(10,address.length()-10);
-            address.append(n);
+            address.append(num);
             if (address == data[i].getSourceIp()){
                 addresses.push_back(address);
             }
         }
         return addresses;
     }
-
-    
-
 };

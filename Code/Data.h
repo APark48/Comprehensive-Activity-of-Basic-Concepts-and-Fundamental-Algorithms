@@ -26,6 +26,14 @@ public:
     }
     //Constructor if arguments are provided
     Data(std::string date, std::string time, std::string sourceIp, std::string sourcePort, std::string sourceHostname, std::string destinationIp, std::string destinationPort, std::string destinationHostname){
+        this->date=date;
+        this->time=time;
+        this->sourceIp=sourceIp;
+        this->sourcePort=sourcePort;
+        this->sourceHostname=sourceHostname;
+        this->destinationIp=destinationIp;
+        this->destinationPort=destinationPort;
+        this->destinationHostname=destinationHostname;
     }
     ~Data(){};
 

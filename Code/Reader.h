@@ -11,7 +11,6 @@
 #include <string>
 #include <stdio.h>
 
-
 using std::getline;
 
 class Reader{
