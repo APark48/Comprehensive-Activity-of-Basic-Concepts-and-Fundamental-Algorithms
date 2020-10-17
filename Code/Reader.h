@@ -6,24 +6,24 @@
 #include "Searcher.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <string>
+#include <stdio.h>
 
 
 using std::getline;
 
 class Reader{
-private:
+protected:
     std::vector<Data> data;
 
 public:
-    ~Reader();
-    Reader();
-
     int loadDataFromcsv(std::string path){
         std::ifstream file(path);
-        if (!file.is_open())
+        if (!file.is_open()){
             return -1;
+        }
         std::string line, date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
         while (getline(file, line)){
             std::stringstream ss(line);
@@ -34,7 +34,7 @@ public:
             getline(ss, sourceHostname, ',');
             getline(ss, destinationIp, ',');
             getline(ss, destinationPort, ',');
-            getline(ss, destinationHostname, '\n');
+            getline(ss, destinationHostname, ',');
             Data alog(date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname);
             data.push_back(alog);
         }
@@ -79,7 +79,7 @@ public:
             }  
         }
         return -1;
-    }
+    }/*
     std::vector<std::string> addressIp (){
         vector<std::string> addresses;
         std::string address;
@@ -90,9 +90,9 @@ public:
             addresses.push_back(address);
         }
         std::cout << "Company IP address is:  " << address << std::endl;
-    }
+    }*/
     std::vector<int> portCount(int threshold){
-        vector<int> ports;
+        std::vector<int> ports;
         Search<int> searcher;
         for (size_t i = 0; i < data.size(); i++){ 
             int dst_port = atoi(data[i].getDestinationPort().c_str());

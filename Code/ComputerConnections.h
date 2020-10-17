@@ -15,21 +15,22 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Data.h"
+#include "Reader.h"
 
 template <typename T>
-class ComputerConnections{
+class ComputerConnections:Reader{
 private:
     T ip;
     T name;
     T sourceConnections;
     T destinationConnections;    
 public:
-    ComputerConnections(std::string sourceHostname){
+    ComputerConnections(){
     }
     ~ComputerConnections(){}
     
     // Reversing vector by simulating a stack, current vector's last element will be pushed back to new vector and popped.
-    T newSourceConnection(std::vector<T> elements){
+     newSourceConnection(std::vector<T> elements){
         // Empty reversed vector
         std::vector<T> reversedElements;
         while (elements.size() != 0){
@@ -45,7 +46,7 @@ public:
     std::vector<T> newDestinationConnection(){
         vector<std::string> addresses;
         std::string address;
-        for (int i = 0; i<Reader::length(); i++){
+        for (int i = 0; i<data.size(); i++){
             address = data[i].getSourceIp();
             if (address != "-"){
                 addresses.push_back(address);     
@@ -54,16 +55,21 @@ public:
         return addresses;
     }
 
-    // Function to append to the end of our IP address the value we ask the user to input
-    T createNewIp(int n){
+    // Function to append to the end of our IP address the value we ask the user to input to then create a vector with only this addresses.
+    std::vector<T> createNewIp(int n){
         vector<std::string> addresses;
         std::string address;
         for (size_t i = 0; i < data.size(); i++){
             address = data[i].getSourceIp();
             address.erase(10,address.length()-10);
             address.append(n);
-            addresses.push_back(address);
+            if (address == data[i].getSourceIp()){
+                addresses.push_back(address);
+            }
         }
         return addresses;
     }
+
+    
+
 };

@@ -1,8 +1,12 @@
 //Developed by Alfredo Jeong Hyun Park (A01658259)
 //Developed by Valter Alejandro Kuhne Hernández (A01379392)
 //Copyright © 2020. All rights reserved.
-#pragma once
+#ifndef Data_h
+#define Data_h
+#include <string>
+#include <iostream>
 
+using std::cout;
 
 class Data{
 private:
@@ -80,7 +84,9 @@ public:
     cout << sourceHostname << ", ";
     cout << destinationIp << ", ";
     cout << destinationPort << ", ";
-    cout << destinationHostname << endl;
+    cout << destinationHostname << std::endl;
     }
 
 };
+
+#endif
