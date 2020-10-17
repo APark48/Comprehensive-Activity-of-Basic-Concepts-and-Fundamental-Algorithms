@@ -44,7 +44,7 @@ public:
 
     // Function that returns source IP in order  
     std::vector<T> newDestinationConnection(){
-        vector<std::string> addresses;
+        std::vector<std::string> addresses;
         std::string address;
         for (int i = 0; i<data.size(); i++){
             address = data[i].getSourceIp();
@@ -57,7 +57,7 @@ public:
 
     // Function to append to the end of our IP address the value we ask the user to input to then create a vector with only this addresses.
     std::vector<T> createNewIp(std::string num){
-        vector<std::string> addresses;
+        std::vector<std::string> addresses;
         std::string address;
         for (size_t i = 0; i < data.size(); i++){
             address = data[i].getSourceIp();
