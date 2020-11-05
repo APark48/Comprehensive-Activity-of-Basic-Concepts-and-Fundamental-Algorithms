@@ -29,7 +29,7 @@ bool Data::compareEqual(int &a, int &b){
 
 int main(){
     Reader data;
-    if (data.loadDataFromcsv("equipo11.csv") > 0)
+    if (data.loadDataFromcsv("nuevo11.csv") > 0)
         cout << "DONE" << endl;
     else
     {
@@ -60,6 +60,9 @@ int main(){
         cout << ports[i] << ", ";
     }
     cout << endl;
+
+    ComputerConnections<Data> data2;
+    data2.newSourceConnection(data);
 
     return 0;
 }

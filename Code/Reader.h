@@ -44,6 +44,12 @@ public:
             data[i].print();
         }    
     }
+    Data getBack(){
+        return data.back();
+    }
+    void pop(){
+        data.pop_back();
+    }
     int length(){
         return data.size();
     }

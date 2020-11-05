@@ -30,14 +30,14 @@ public:
     ~ComputerConnections(){}
     
     // Reversing vector by simulating a stack, current vector's last element will be pushed back to new vector and popped.
-    std::vector<T> newSourceConnection(){
+    std::vector<T> newSourceConnection(Reader &data){
         // Empty reversed vector
         std::vector<T> reversedElements;
-        while (data.size() != 0){
+        while (data.length() != 0){
             // Pushing last element of current vector
-            reversedElements.push_back(data.back());
+            reversedElements.push_back(data.getBack());
             // Popping current vector element
-            data.pop_back();
+            data.pop();
         }
         return reversedElements;
     }
