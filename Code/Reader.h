@@ -3,6 +3,8 @@
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
+#include <map>
+#include <set>
 
 class Reader{
 private:
@@ -54,10 +56,10 @@ public:
     // Function to return if any of the PCs belongs to given user
     bool belonging(std::string name){
         std::string hostName = name+".reto.com";
-        unsigned int size = reader.size();
+        int size = reader.size();
         bool found = false;
 
-        for (size_t i=0; i<size;i++){
+        for (int i=0; i<size;i++){
             if (reader.at(i).getDestinationHostname() == hostName){
                 found=true;
             }
@@ -68,8 +70,8 @@ public:
     // Function to return if any PC belongs to server.reto.com
     bool serverReto(){
         bool found = false;
-        unsigned int size = reader.size();
-        for (size_t i=0; i<size;i++){
+        int size = reader.size();
+        for (int i=0; i<size;i++){
             if (reader.at(i).getDestinationHostname() == "server.reto.com"){
                 found = true;
             }
@@ -86,4 +88,34 @@ public:
     std::string getDestinationIp(int position){
         return reader.at(position).getDestinationIp();
     }
+
+    void printHostname(){
+        std::set<std::string> hostname;
+        int size = reader.size();
+        for (int i=0; i<size; i++){
+            hostname.insert(reader.at(i).getDestinationHostname());
+        }
+        for (auto i:hostname){
+            std::cout << i << std::endl;
+        }
+    }
+    
+    void dayConnection(std::string date){
+        std::map<std::string, int> dict;
+        int size = reader.size();
+        int count = 1;
+        for (int i=0; i<size;i++){
+            if (reader.at(i).getDate() == date){
+                if (reader.at(i).getDestinationHostname() != "-"){
+                    dict.insert(std::make_pair(reader.at(i).getDestinationHostname(), count));
+                }
+            }
+            count++;
+        }
+        std::map<std::string, int>::iterator iter;
+        for (iter = dict.begin(); iter != dict.end(); iter++){
+            std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
+        }
+    }
+    
 };

@@ -27,17 +27,26 @@ int main(){
     std::cout << "Total registers are: " << reader.totalRegisters() << std::endl;
     std::cout << "Total second day records are: " << reader.secondDayRecords() << std::endl;
 
-    std::string name;
-    std::cout <<"Enter name: ";
-    std::cin >> name;
-    std::cout << "Does a computer belong to "<< name << "?: " << reader.belonging(name) << std::endl;
+    // std::string name;
+    // std::cout <<"Enter name: ";
+    // std::cin >> name;
+    // std::cout << "Does a computer belong to "<< name << "?: " << reader.belonging(name) << std::endl;
 
-    std::cout << "Does a computer belong to server.reto.com?: " << reader.serverReto() << std::endl;
+    // std::cout << "Does a computer belong to server.reto.com?: " << reader.serverReto() << std::endl;
 
     ComputerConnections computer;
     computer.setComputer(reader);
     computer.print();
-    std::cout << "Last connection is: "<< computer.lastConnection(reader);
+    std::cout << "Last connection is: "<< computer.lastConnection(reader) << std::endl;
+
+    reader.printHostname();
+    std::cout << std::endl;
+    std::string date;
+    std::cout << "Enter date: ";
+    std::cin >> date;
+    reader.dayConnection(date);
+
+
 
     return 0;
 }
