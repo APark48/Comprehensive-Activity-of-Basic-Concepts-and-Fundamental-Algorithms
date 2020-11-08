@@ -1,69 +1,38 @@
-//Developed by Alfredo Jeong Hyun Park (A01658259)
-//Developed by Valter Alejandro Kuhne Hernández (A01379392)
-//Copyright © 2020. All rights reserved.
-#include "Reader.h"
-#include "Sorter.h"
-#include "Searcher.h"
 #include "Data.h"
+#include "Reader.h"
 #include "ComputerConnections.h"
-#include <iostream>
 #include <fstream>
-#include <sstream>
-#include <vector>
-
-using namespace std;
-
-bool Data::compareSourceHostname(Data &a, Data &b){
-    stringstream ssa(a.getSourceHostname());
-    string h1, h2;
-    getline(ssa, h1, '.');
-    stringstream ssb(b.getSourceHostname());
-    getline(ssb, h2, '.');
-    
-    return h1 == h2;
-}
-
-bool Data::compareEqual(int &a, int &b){
-    return a == b;
-}
+#include <string>
+#include <iostream>
 
 int main(){
-    Reader data;
-    if (data.loadDataFromcsv("nuevo11.csv") > 0)
-        cout << "DONE" << endl;
-    else
-    {
-        cout << "ERROR loading input file... Exiting program...";
-        return 0;
+    Reader reader;
+    std::ifstream data;
+    data.open("nuevo11.csv");
+    while (data.good()){
+        std::string date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname;
+        std::getline(data, date, ',');
+        std::getline(data, time, ',');
+        std::getline(data, sourceIp, ',');
+        std::getline(data, sourcePort, ',');
+        std::getline(data, sourceHostname, ',');
+        std::getline(data, destinationIp, ',');
+        std::getline(data, destinationPort, ',');
+        std::getline(data, destinationHostname, '\n');
+        Data line(date, time, sourceIp, sourcePort, sourceHostname, destinationIp, destinationPort, destinationHostname);
+        reader.pushRecord(line);
     }
 
-    cout << "Number of registers: " << data.length() << endl;
-    
-    string date; int count;
-    data.day2(1, date, count);
-    cout << "Date of second day is: " << date << " with " << count << " logs." << endl;
+    //reader.print();
+    std::cout << "Total registers are: " << reader.totalRegisters() << std::endl;
+    std::cout << "Total second day records are: " << reader.secondDayRecords() << std::endl;
+    //std::cout << reader.belonging() << std::endl;
+    //std::cout << reader.serverReto() << std::endl;
 
-    vector<string> names;
-    names.push_back("jeffrey");
-    names.push_back("scott");
-    names.push_back("katherine");
-    cout << "Found register from ";
-    for (size_t i = 0; i < names.size(); i++){
-        cout << names[i] << ", ";
-    }
-    cout << endl;
-    cout << "\t" << (data.findHostname(names) >= 0 ? "YES" : "NO") << endl;
-    
-    cout << "Destination ports under 1000: \n\t";
-    vector<int> ports = data.portCount(1000);
-    for (size_t i = 0; i < ports.size(); i++){
-        cout << ports[i] << ", ";
-    }
-    cout << endl;
-
-    ComputerConnections<Data> data2;
-    data2.newSourceConnection(data);
+    ComputerConnections computer;
+    computer.setComputer(reader);
+    computer.print();
+    std::cout << "Last connection is: "<< computer.lastConnection(reader);
 
     return 0;
 }
-

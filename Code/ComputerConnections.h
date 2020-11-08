@@ -1,72 +1,79 @@
-//Developed by Alfredo Jeong Hyun Park (A01658259)
-//Developed by Valter Alejandro Kuhne Hernández (A01379392)
-//Copyright © 2020. All rights reserved.
-
-// Date created: 13/October/2020
-// Last modified: 16/October/2020 
-
-// Computer Connections is a class consisting of three functions:
-// 1. newSourceConnection that reverses the logs.
-// 2. newDestinationConnection that returns logs in order.
-// 3. createNewIp which appends a new number to the end of the IP.
-
 #pragma once
-#include <vector>
-#include <stdlib.h>
-#include <iostream>
-#include "Data.h"
 #include "Reader.h"
+#include <stack>
 
-template <typename T>
-class ComputerConnections:Reader{
+class ComputerConnections{
 private:
-    T ip;
-    T name;
-    T sourceConnections;
-    T destinationConnections;    
+    std::string ip, name; 
+    int inConnections, outConnections;
 public:
-    ComputerConnections(){
-    }
-    ~ComputerConnections(){}
-    
-    // Reversing vector by simulating a stack, current vector's last element will be pushed back to new vector and popped.
-    std::vector<T> newSourceConnection(Reader &data){
-        // Empty reversed vector
-        std::vector<T> reversedElements;
-        while (data.length() != 0){
-            // Pushing last element of current vector
-            reversedElements.push_back(data.getBack());
-            // Popping current vector element
-            data.pop();
-        }
-        return reversedElements;
+    ComputerConnections(){};
+    ~ComputerConnections(){};
+
+    // Function to print computer data
+    void print(){
+        std::cout << "-------------------------------------------" << std::endl;
+        std::cout << "IP: " << ip << std::endl;
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Total Incoming Connections: " << inConnections << std::endl;
+        std::cout << "Total Outgoing Connections: " << outConnections << std::endl;
+        std::cout << "-------------------------------------------" << std::endl;
     }
 
-    // Function that returns source IP in order  
-    std::vector<T> newDestinationConnection(){
-        std::vector<std::string> addresses;
-        std::string address;
-        for (int i = 0; i<data.size(); i++){
-            address = data[i].getSourceIp();
-            if (address != "-"){
-                addresses.push_back(address);     
-            }
-        }
-        return addresses;
+    // Function to set a computer
+    void setComputer(Reader data){
+        int position;
+        std::cout << "Enter random number to set computer: ";
+        std::cin >> position;
+        ip = data.getSourceIp(position);
+        name = data.getHostName(position);
+        inConnections = totalInConnections(data);
+        outConnections = totalOutConnections(data);
     }
 
-    // Function to append to the end of our IP address the value we ask the user to input to then create a vector with only this addresses.
-    std::vector<T> createNewIp(std::string num){
-        std::vector<std::string> addresses;
-        std::string address;
-        for (size_t i = 0; i < data.size(); i++){
-            address = data[i].getSourceIp();
-            address.erase(10,address.length()-10);
-            address.append(num);
-            if (address == data[i].getSourceIp()){
-                addresses.push_back(address);
+    // Function to return total incoming connections
+    int totalInConnections(Reader data){
+        int count = 0;
+        int size = data.totalRegisters();
+        for (int i=0; i<size; i++){
+            if (ip == data.getDestinationIp(i)){
+                count++;
             }
         }
-        return addresses;
+        return count;     
     }
+
+    // Function to return total outgoing connections
+    int totalOutConnections(Reader data){
+        int count = 0;
+        int size = data.totalRegisters();
+        for (int i=0; i<size; i++){
+            if (ip == data.getSourceIp(i)){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // Function to return last connection of computer
+    std::string lastConnection(Reader data){
+        std::vector<std::string> last;
+        int size = data.totalRegisters();
+        for (int i=0; i<size; i++){
+            if (ip == data.getDestinationIp(i)){
+                last.push_back(data.getSourceIp(i));
+            }
+            if (ip == data.getSourceIp(i)){
+                last.push_back(data.getDestinationIp(i));
+            }
+        }
+        if (ip == last.back()){
+            std::cout << "Internal Connection." << std::endl;
+        }
+        else {
+            std::cout << "External Connection." << std::endl;
+        }
+        return last.back();
+    }
+
 };
