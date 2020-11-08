@@ -52,10 +52,7 @@ public:
     } 
 
     // Function to return if any of the PCs belongs to given user
-    bool belonging(){
-        std::string name;
-        std::cout << "Enter name: ";
-        std::cin >> name;
+    bool belonging(std::string name){
         std::string hostName = name+".reto.com";
         unsigned int size = reader.size();
         bool found = false;

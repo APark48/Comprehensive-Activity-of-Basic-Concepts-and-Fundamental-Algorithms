@@ -60,10 +60,7 @@ public:
         std::vector<std::string> last;
         int size = data.totalRegisters();
         for (int i=0; i<size; i++){
-            if (ip == data.getDestinationIp(i)){
-                last.push_back(data.getSourceIp(i));
-            }
-            if (ip == data.getSourceIp(i)){
+            if (data.getSourceIp(i) == ip){
                 last.push_back(data.getDestinationIp(i));
             }
         }
@@ -75,5 +72,4 @@ public:
         }
         return last.back();
     }
-
 };

@@ -26,8 +26,13 @@ int main(){
     //reader.print();
     std::cout << "Total registers are: " << reader.totalRegisters() << std::endl;
     std::cout << "Total second day records are: " << reader.secondDayRecords() << std::endl;
-    //std::cout << reader.belonging() << std::endl;
-    //std::cout << reader.serverReto() << std::endl;
+
+    std::string name;
+    std::cout <<"Enter name: ";
+    std::cin >> name;
+    std::cout << "Does a computer belong to "<< name << "?: " << reader.belonging(name) << std::endl;
+
+    std::cout << "Does a computer belong to server.reto.com?: " << reader.serverReto() << std::endl;
 
     ComputerConnections computer;
     computer.setComputer(reader);
