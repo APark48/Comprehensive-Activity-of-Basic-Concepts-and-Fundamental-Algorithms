@@ -67,7 +67,7 @@ public:
     void inorder(Node *root) { 
         if (root != NULL) { 
             inorder(root->left); 
-            cout << root->key << " " << root->str << endl; 
+            cout << root->str << ": " << root->key << endl; 
             inorder(root->right); 
         } 
     } 
@@ -76,6 +76,7 @@ public:
     Node* insert(Node* node, string str, int key) { 
     /* If the tree is empty, return a new node */
         if (node == NULL) return new Node(str, key); 
+
 
         /* Otherwise, recur down the tree */
         if (key < node->key) 

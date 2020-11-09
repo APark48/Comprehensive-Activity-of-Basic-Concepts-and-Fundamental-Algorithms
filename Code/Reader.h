@@ -89,6 +89,9 @@ public:
     std::string getDestinationIp(int position){
         return reader.at(position).getDestinationIp();
     }
+    std::string getDate(int position){
+        return reader.at(position).getDate();
+    }
 
     void printHostname(){
         std::set<std::string> hostname;
@@ -98,6 +101,18 @@ public:
         }
         for (auto i:hostname){
             std::cout << i << std::endl;
+        }
+    }
+
+    void printDate(Reader read){
+        std::set<std::string> date;
+        int size = reader.size();
+        for (int i=0; i<size; i++){
+            date.insert(reader.at(i).getDate());
+        }
+        for (auto i:date){
+            std::cout << std::endl << i << std::endl;
+            read.top(5,i);
         }
     }
     
@@ -143,11 +158,18 @@ public:
     }*/
     void top(int n, std::string date){
         std::string str;
-        BinarySearchTree BST(str, n);
+        int val = 0;
+        BinarySearchTree BST(str, val);
         std::map<std::string, int>dict = dayConnection(date);
-        for (auto iter=dict.begin(); iter!=dict.end(); iter++) {
-            BST.insert(BST.getRoot(), iter->first, iter->second);
+        std::multimap<int, std::string> newmap = invert(dict);
+        int i = -1;
+        for (auto iter=newmap.rbegin(); iter!=newmap.rend(); iter++) {
+            if (i<=n){
+                i++;
+                BST.insert(BST.getRoot(), iter->second, iter->first);
+            }
         }
+        std::cout << std::endl;
         BST.invert(BST.getRoot());
         BST.inorder(BST.getRoot()); 
     }

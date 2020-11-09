@@ -24,6 +24,8 @@ int main(){
     }
 
     //reader.print();
+    std::string dates; 
+    int count;
     std::cout << "Total registers are: " << reader.totalRegisters() << std::endl;
     std::cout << "Total second day records are: " << reader.secondDayRecords() << std::endl;
 
@@ -41,11 +43,7 @@ int main(){
 
     //reader.printHostname();
     std::cout << std::endl;
-    std::string date;
-    std::cout << "Enter date: ";
-    std::cin >> date;
-    reader.dayConnection(date);
-    reader.top(5,date);
+    reader.printDate(reader);
 
 
     return 0;
