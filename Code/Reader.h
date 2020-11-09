@@ -106,7 +106,9 @@ public:
         int size = reader.size();
         for (int i=0; i<size;i++){
             if (reader.at(i).getDate() == date && reader.at(i).getDestinationHostname() != "-"){
-                dict[reader.at(i).getDestinationHostname()]++;
+                if(reader.at(i).getDestinationHostname().erase(0, reader.at(i).getDestinationHostname().length()-8)!="reto.com"){
+                    dict[reader.at(i).getDestinationHostname()]++;
+                }   
             }
         }
         return dict;/*
@@ -115,19 +117,39 @@ public:
             std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
         }*/
     }
-    void top(int n, std::string date){
-        BinarySearchTree<int> best;
-        std::map<std::string, int>dict = Reader::dayConnection(date);
-        std::map<std::string, int>::iterator iter;
-        int i=1;
-        for (iter = dict.begin(); iter != dict.end(); iter++){
-            if (i<=n){
-                best.insert_node_recursive(iter->second);
-                std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
-                i++;
-            }
+    std::multimap<int, std::string> invert(std::map<std::string, int> & mymap)
+    {
+        std::multimap<int, std::string> multiMap;
+
+        std::map<std::string, int> :: iterator it;
+        for (it=mymap.begin(); it!=mymap.end(); it++) 
+        {
+            multiMap.insert(make_pair(it->second, it->first));
         }
-        best.print_preorder();
+
+        return multiMap;
+    }
+    /*void topTest(int n, std::string date){
+        std::map<std::string, int>dict = dayConnection(date);
+        std::multimap<int, std::string> newmap = invert(dict);
+        std::multimap<int, std::string> :: iterator iter;
+        for (iter=newmap.end(); iter!=newmap.begin(); iter--) 
+        {
+            // printing the second value first because the 
+            // order of (key,value) is reversed in the multimap
+            std::cout << iter->second << ": " << iter->first << std::endl;
+        }
+        //best.print_preorder();
+    }*/
+    void top(int n, std::string date){
+        std::string str;
+        BinarySearchTree BST(str, n);
+        std::map<std::string, int>dict = dayConnection(date);
+        for (auto iter=dict.begin(); iter!=dict.end(); iter++) {
+            BST.insert(BST.getRoot(), iter->first, iter->second);
+        }
+        BST.invert(BST.getRoot());
+        BST.inorder(BST.getRoot()); 
     }
     
 };
