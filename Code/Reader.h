@@ -115,16 +115,19 @@ public:
             std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
         }*/
     }
-    /*
     void top(int n, std::string date){
         BinarySearchTree<int> best;
         std::map<std::string, int>dict = Reader::dayConnection(date);
         std::map<std::string, int>::iterator iter;
+        int i=1;
         for (iter = dict.begin(); iter != dict.end(); iter++){
-            best.insert_node_recursive(iter->second);
-            std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
+            if (i<=n){
+                best.insert_node_recursive(iter->second);
+                std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
+                i++;
+            }
         }
         best.print_preorder();
-    }*/
+    }
     
 };
