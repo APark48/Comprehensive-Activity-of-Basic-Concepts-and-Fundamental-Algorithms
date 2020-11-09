@@ -100,13 +100,13 @@ public:
     }
 
     void printHostname(){
-        std::set<std::string> hostname;
+        std::map<std::string, std::string> hostname;
         int size = reader.size();
         for (int i=0; i<size; i++){
-            hostname.insert(reader.at(i).getDestinationHostname());
+            hostname.insert(std::make_pair(reader.at(i).getDestinationHostname(), reader.at(i).getDestinationIp()));
         }
         for (auto i:hostname){
-            std::cout << i << std::endl;
+            std::cout << i.first <<"\t" << i.second << std::endl;
         }
     }
 
@@ -139,13 +139,13 @@ public:
         }
     }
     void printDomains(){
-        std::map<std::string, int> dict;
+        std::map<std::string, std::string> dict;
         int total = 1;
         int size = reader.size();
         for (int i=0; i<size; i++){
             if (reader.at(i).getDestinationHostname().erase(0, reader.at(i).getDestinationHostname().length()-8) != "reto.com"){
                 if (reader.at(i).getDestinationIp() == reader.at(i).getSourceIp()){
-                    dict[reader.at(i).getDestinationIp()]++;
+                    dict.insert(std::make_pair(reader.at(i).getDestinationIp(),reader.at(i).getSourceIp()));
                 }
             }
         }

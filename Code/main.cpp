@@ -41,7 +41,7 @@ int main(){
     computer.print();
     std::cout << "Last connection is: "<< computer.lastConnection(reader) << std::endl;
 
-    //reader.printHostname();
+    reader.printHostname();
     std::cout << std::endl;
     reader.printDate(reader);
     std::cout << std::endl;
