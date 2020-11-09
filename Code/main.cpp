@@ -45,7 +45,7 @@ int main(){
     std::cout << "Enter date: ";
     std::cin >> date;
     reader.dayConnection(date);
-
+    reader.top(5,date);
 
 
     return 0;

@@ -1,5 +1,6 @@
 #pragma once
 #include "Data.h"
+#include "BinarySearchTree.h"
 #include <vector>
 #include <stdlib.h>
 #include <iostream>
@@ -100,22 +101,30 @@ public:
         }
     }
     
-    void dayConnection(std::string date){
+    std::map<std::string, int> dayConnection(std::string date){
         std::map<std::string, int> dict;
         int size = reader.size();
-        int count = 1;
         for (int i=0; i<size;i++){
-            if (reader.at(i).getDate() == date){
-                if (reader.at(i).getDestinationHostname() != "-"){
-                    dict.insert(std::make_pair(reader.at(i).getDestinationHostname(), count));
-                }
+            if (reader.at(i).getDate() == date && reader.at(i).getDestinationHostname() != "-"){
+                dict[reader.at(i).getDestinationHostname()]++;
             }
-            count++;
         }
+        return dict;/*
         std::map<std::string, int>::iterator iter;
         for (iter = dict.begin(); iter != dict.end(); iter++){
             std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
-        }
+        }*/
     }
+    /*
+    void top(int n, std::string date){
+        BinarySearchTree<int> best;
+        std::map<std::string, int>dict = Reader::dayConnection(date);
+        std::map<std::string, int>::iterator iter;
+        for (iter = dict.begin(); iter != dict.end(); iter++){
+            best.insert_node_recursive(iter->second);
+            std::cout << iter->first<< ":" << "\t" << iter->second << std::endl;
+        }
+        best.print_preorder();
+    }*/
     
 };
