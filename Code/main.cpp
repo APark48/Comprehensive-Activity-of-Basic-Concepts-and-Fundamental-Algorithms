@@ -44,7 +44,11 @@ int main(){
     //reader.printHostname();
     std::cout << std::endl;
     reader.printDate(reader);
-
+    std::cout << std::endl;
+    
+    reader.printRetoDomains();
+    std::cout << std::endl;
+    reader.printDomains();
 
     return 0;
 }

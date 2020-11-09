@@ -80,6 +80,9 @@ public:
         return found;
     } 
 
+    int getSize(){
+        return reader.size();
+    }
     std::string getHostName(int position){
         return reader.at(position).getSourceHostname();
     }
@@ -88,6 +91,9 @@ public:
     }
     std::string getDestinationIp(int position){
         return reader.at(position).getDestinationIp();
+    }
+    std::string getDestinationHostname(int position){
+        return reader.at(position).getDestinationHostname();
     }
     std::string getDate(int position){
         return reader.at(position).getDate();
@@ -115,6 +121,39 @@ public:
             read.top(5,i);
         }
     }
+
+    // Function to print total incoming connections from reto.com domain
+    void printRetoDomains(){
+        std::map<std::string, int> dict;
+        int total = 1;
+        int size = reader.size();
+        for (int i=0; i<size; i++){
+            if (reader.at(i).getDestinationHostname().erase(0, reader.at(i).getDestinationHostname().length()-8) == "reto.com"){
+                if (reader.at(i).getDestinationIp() == reader.at(i).getSourceIp()){
+                    dict[reader.at(i).getDestinationIp()]++;
+                }
+            }
+        }
+        for (auto i:dict){
+            std::cout << i.first << "\t" << i.second << std::endl;
+        }
+    }
+    void printDomains(){
+        std::map<std::string, int> dict;
+        int total = 1;
+        int size = reader.size();
+        for (int i=0; i<size; i++){
+            if (reader.at(i).getDestinationHostname().erase(0, reader.at(i).getDestinationHostname().length()-8) != "reto.com"){
+                if (reader.at(i).getDestinationIp() == reader.at(i).getSourceIp()){
+                    dict[reader.at(i).getDestinationIp()]++;
+                }
+            }
+        }
+        for (auto i:dict){
+            std::cout << i.first << "\t" << i.second << std::endl;
+        }
+    }
+
     
     std::map<std::string, int> dayConnection(std::string date){
         std::map<std::string, int> dict;

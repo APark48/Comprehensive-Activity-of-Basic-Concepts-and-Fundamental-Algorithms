@@ -10,6 +10,13 @@ public:
     ComputerConnections(){};
     ~ComputerConnections(){};
 
+    std::string getIp(){
+        return ip;
+    }
+    int getInConnections(){
+        return inConnections;
+    }
+
     // Function to print computer data
     void print(){
         std::cout << "-------------------------------------------" << std::endl;
@@ -72,4 +79,39 @@ public:
         }
         return last.back();
     }
+
+    std::map<std::string, int> serverConnections(Reader reader){
+        std::map<std::string, int> dict;
+        int size = reader.getSize();
+        for (int i=0; i<size; i++){
+            if(reader.getDestinationHostname(i).erase(0, reader.getDestinationHostname(i).length()-8)!="reto.com"){
+                dict.insert(std::make_pair(reader.getDestinationIp(i), NULL));
+            }
+        }
+        return dict;
+    }
+    std::map<std::string, int> retoServerConnections(Reader reader){
+        std::map<std::string, int> dict;
+        int size = reader.getSize();
+        for (int i=0; i<size; i++){
+            if(reader.getDestinationHostname(i).erase(0, reader.getDestinationHostname(i).length()-8)=="reto.com"){
+                dict.insert(std::make_pair(reader.getDestinationIp(i), NULL));
+            }
+        }
+        return dict;
+    }
+    void returnServerIp(Reader data, std::map<std::string, int> dict){
+        int size = dict.size();
+        for (int i=0; i<size; i++){
+            if (data.getDestinationIp(i) != data.getSourceIp(i)){
+                dict.at(data.getDestinationIp(i)) += 1;
+            }
+        }
+        for (auto i:dict){
+            std::cout << i.first << "\t\t" << i.second << std::endl;
+        }
+    }
+
+    
+
 };
