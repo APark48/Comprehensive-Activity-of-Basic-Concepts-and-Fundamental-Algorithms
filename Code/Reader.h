@@ -15,6 +15,7 @@ public:
     ~Reader(){};
 
     // Function to print all records
+    /*
     void print(){
         unsigned int size = reader.size();
         for (size_t i = 0; i < size; i++){
@@ -28,7 +29,7 @@ public:
             std::cout << "Destination Hostname: " << reader.at(i).getDestinationHostname() << std::endl;
             std::cout << "-------------------------------------------" << std::endl;
         } 
-    }
+    }*/
     
     // Function to push a value of a Data type object to reader 
     void pushRecord(Data data){
@@ -39,6 +40,23 @@ public:
     int totalRegisters(){
         return reader.size();
     } 
+
+     std::string getInternalIP(int position){
+        std::string internalIp;
+        std::string dInternalIp = reader.at(position).getDestinationIp().erase(10,reader.at(position).getDestinationIp().length()-10);
+        std::string sInternalIp = reader.at(position).getSourceIp().erase(10,reader.at(position).getSourceIp().length()-10);
+        if (dInternalIp == "10.214.58"){
+            internalIp = reader.at(position).getDestinationIp();
+        }
+        if (sInternalIp == "10.214.58"){
+            internalIp = reader.at(position).getSourceIp();
+        }
+        return internalIp;
+    }
+
+    void getDay(int day){
+        
+    }
 
     // Function to return second day records
     int secondDayRecords(){
@@ -89,6 +107,7 @@ public:
     std::string getSourceIp(int position){
         return reader.at(position).getSourceIp();
     }
+
     std::string getDestinationIp(int position){
         return reader.at(position).getDestinationIp();
     }
@@ -134,10 +153,11 @@ public:
                 }
             }
         }
+        std::cout << "printRetoDomains" << std::endl;
         for (auto i:dict){
             std::cout << i.first << "\t" << i.second << std::endl;
         }
-    }
+    }/*
     void printDomains(){
         std::map<std::string, std::string> dict;
         int total = 1;
@@ -149,10 +169,11 @@ public:
                 }
             }
         }
+        std::cout << "printDomains" << std::endl;
         for (auto i:dict){
             std::cout << i.first << "\t" << i.second << std::endl;
         }
-    }
+    }*/
 
     
     std::map<std::string, int> dayConnection(std::string date){

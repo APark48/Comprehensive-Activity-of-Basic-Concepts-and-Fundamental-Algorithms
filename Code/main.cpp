@@ -48,7 +48,7 @@ int main(){
     
     reader.printRetoDomains();
     std::cout << std::endl;
-    reader.printDomains();
+    //reader.printDomains();
 
     return 0;
 }

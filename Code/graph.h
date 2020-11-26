@@ -36,7 +36,7 @@ private:
 
 public:
     ~Graph() {};
-    Graph() {is_directed=false;};
+    Graph() {is_directed=true;};
 
     void add_node(T val)
     {

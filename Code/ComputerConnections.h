@@ -27,13 +27,16 @@ public:
         std::cout << "-------------------------------------------" << std::endl;
     }
 
+
+
+    
     // Function to set a computer
     void setComputer(Reader data){
-        int position;
+        int lastIp;
         std::cout << "Enter random number to set computer: ";
-        std::cin >> position;
-        ip = data.getSourceIp(position);
-        name = data.getHostName(position);
+        std::cin >> lastIp;
+        ip = data.getSourceIp(lastIp);
+        name = data.getHostName(lastIp);
         inConnections = totalInConnections(data);
         outConnections = totalOutConnections(data);
     }

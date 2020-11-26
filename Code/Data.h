@@ -53,4 +53,11 @@ public:
     std::string getDestinationHostname(){
         return destinationHostname;
     }
+    //setters
+    void setSourceIp(std::string sourceIp){
+        sourceIp = this->sourceIp;
+    }
+    void setDestinationIp(std::string destinationIp){
+        destinationIp = this->destinationIp;
+    }
 };
