@@ -54,6 +54,13 @@ public:
         return internalIp;
     }
 
+    void setsInternalIp(int position){
+        reader.at(position).setSourceIp(getInternalIP(position));
+    }
+    void setdInternalIp(int position){
+        reader.at(position).setDestinationIp(getInternalIP(position));
+    }
+
     void getDay(int day){
         
     }
@@ -129,7 +136,7 @@ public:
         }
     }
 
-    void printDate(Reader read){
+    void printDate(Reader read, int n){
         std::set<std::string> date;
         int size = reader.size();
         for (int i=0; i<size; i++){
@@ -137,7 +144,7 @@ public:
         }
         for (auto i:date){
             std::cout << std::endl << i << std::endl;
-            read.top(5,i);
+            read.top(n-2,i);
         }
     }
 
